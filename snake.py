@@ -62,34 +62,33 @@ def move_food():
     
     
     food_direction = randrange(8) #Se genera un número al azar del 0 al 7
-    
     #La comida se mueve de 10 en 10 porque es lo que mide el cuadrado
     #Este primer if lo mueve a la derecha
-    if food_direction == 1 and food.x < 190:
+    if food_direction == 1 and food.x < 180:
         food.x += 10
     #Si sale dos se mueve arriba
-    elif food_direction == 2 and food.y < 190:
+    elif food_direction == 2 and food.y < 180:
         food.y += 10
     #Si sale tres se mueve a la izquierda
-    elif food_direction == 3 and food.x > -200:
+    elif food_direction == 3 and food.x > -190:
         food.x -= 10
     #Si sale cuatro se mueve abajo
-    elif food_direction == 4 and food.y > -200:
+    elif food_direction == 4 and food.y > -190:
         food.y -= 10
     #Este if lo mueve arriba a la derecha
-    elif food_direction == 5 and food.x < 190 and food.y < 190:
+    elif food_direction == 5 and food.x < 180 and food.y < 180:
         food.x += 10
         food.y += 10
     #Si sale 6 se mueve arriba a la izquierda
-    elif food_direction == 6 and food.x > -200 and food.y < 190:
+    elif food_direction == 6 and food.x > -190 and food.y < 180:
         food.x -= 10
         food.y += 10
     #Con el 7 se mueve abajo a la derecha
-    elif food_direction == 7 and food.x < 190 and food.y > -200:
+    elif food_direction == 7 and food.x < 180 and food.y > -190:
         food.x += 10
         food.y -= 10
     #Si da cero se moverá abajo a la izquieda
-    elif food_direction == 0 and food.x > -200 and food.y > -200:
+    elif food_direction == 0 and food.x > -190 and food.y > -190:
         food.x -= 10
         food.y -= 10
     
