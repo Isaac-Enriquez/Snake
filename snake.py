@@ -45,17 +45,34 @@ def move():
 
     clear()
 
+    #Este ciclo pinta los recuadros de la serpiente con el color inicial
     for body in snake:
         square(body.x, body.y, 9, 'black')
 
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, 'green') #Esta linea le da el color a la comida
+    
     update()
     ontimer(move, 100)
 
+def move_food():
+    
+    food_direction = randrange(4)
+    if food_direction == 1:
+        food.x += 10
+    elif food_direction == 2:
+        food.y += 10
+    elif food_direction == 3:
+        food.x -= 10
+    else:
+        food.y -= 10
+        
+    ontimer(move_food, 600)
+   
 #Se inicializa el canvas inicial y se esconde la tortuga
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
+print(randrange(4))
 listen() #Este comando lee todas las teclas que se presionan
 #Este bloque cambia la dirección de la serpiente al presionar
 #cualquiera de la teclas de las flechas direccionales
@@ -64,4 +81,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+move_food()
 done()
