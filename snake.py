@@ -38,6 +38,7 @@ def move():
     #crezca cada vez que se choque con la comida
     if head == food:
         print('Snake:', len(snake))
+        #Genera una nueva localizacion random para la comida
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
     else:
@@ -48,31 +49,58 @@ def move():
     #Este ciclo pinta los recuadros de la serpiente con el color inicial
     for body in snake:
         square(body.x, body.y, 9, 'black')
-
-    square(food.x, food.y, 9, 'green') #Esta linea le da el color a la comida
+        
+    #Esta linea le da el color a la comida
+    square(food.x, food.y, 9, 'green')
     
     update()
     ontimer(move, 100)
 
+#Esta función mueve la comida de forma
+#aleatoria dentro de los bordes del juego
 def move_food():
     
-    food_direction = randrange(4)
-    if food_direction == 1:
+    
+    food_direction = randrange(8) #Se genera un número al azar del 0 al 7
+    
+    #La comida se mueve de 10 en 10 porque es lo que mide el cuadrado
+    #Este primer if lo mueve a la derecha
+    if food_direction == 1 and food.x < 190:
         food.x += 10
-    elif food_direction == 2:
+    #Si sale dos se mueve arriba
+    elif food_direction == 2 and food.y < 190:
         food.y += 10
-    elif food_direction == 3:
+    #Si sale tres se mueve a la izquierda
+    elif food_direction == 3 and food.x > -200:
         food.x -= 10
-    else:
+    #Si sale cuatro se mueve abajo
+    elif food_direction == 4 and food.y > -200:
         food.y -= 10
-        
+    #Este if lo mueve arriba a la derecha
+    elif food_direction == 5 and food.x < 190 and food.y < 190:
+        food.x += 10
+        food.y += 10
+    #Si sale 6 se mueve arriba a la izquierda
+    elif food_direction == 6 and food.x > -200 and food.y < 190:
+        food.x -= 10
+        food.y += 10
+    #Con el 7 se mueve abajo a la derecha
+    elif food_direction == 7 and food.x < 190 and food.y > -200:
+        food.x += 10
+        food.y -= 10
+    #Si da cero se moverá abajo a la izquieda
+    elif food_direction == 0 and food.x > -200 and food.y > -200:
+        food.x -= 10
+        food.y -= 10
+    
+    #La comida se mueve cada 600 ticks, lo cual hace que sea un
+    #poco más lenta que la serpiente, la cual se mueve cada 100
     ontimer(move_food, 600)
    
 #Se inicializa el canvas inicial y se esconde la tortuga
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
-print(randrange(4))
 listen() #Este comando lee todas las teclas que se presionan
 #Este bloque cambia la dirección de la serpiente al presionar
 #cualquiera de la teclas de las flechas direccionales
