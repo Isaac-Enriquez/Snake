@@ -9,6 +9,20 @@ food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
+#Lista de colores posibles para la serpiente y la comida
+SnakeC = ['orchid', 'blue', 'yellow', 'turquoise', 'green', 'cyan']
+FoodC = ['orchid', 'blue', 'yellow', 'turquoise', 'green', 'cyan']
+
+#Para poder escoger aleatoriamente, hare vectores equivalente a la lista
+#de colores
+SnakeV = randrange(0,6)
+FoodV = randrange(0,6)
+
+#Para no tener el mismo color de comida y de serpiente se necesita una
+#condicion que permita correr el programa mientras estos no se repitan
+while SnakeV==FoodV:
+    FoodV = randrange(0,6)
+
 #Esa función toma una dirección en 'x' y 'y'
 def change(x, y):
     "Change snake direction."
@@ -48,12 +62,13 @@ def move():
 
     clear()
 
-    #Este ciclo pinta los recuadros de la serpiente con el color inicial
+    #Este ciclo pinta los recuadros de la serpiente con el color inicial, para esto
+    #el vector con los colores de la serpiente se encuentra en la lista 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, SnakeC[SnakeV])
         
     #Esta linea le da el color a la comida
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, FoodC[FoodV])
     
     update()
     ontimer(move, 100)
