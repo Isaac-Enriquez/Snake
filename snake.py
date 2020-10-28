@@ -62,12 +62,15 @@ def move():
 
     clear()
 
-    #Este ciclo pinta los recuadros de la serpiente con el color inicial, para esto
-    #el vector con los colores de la serpiente se encuentra en la lista 
+    #Este ciclo pinta los recuadros de la serpiente, para esto
+    #el vector con los colores de la serpiente se encuentra dentro de la lista de color
+    #para llamar aleatorimente uno de los componentes de la lista
     for body in snake:
         square(body.x, body.y, 9, SnakeC[SnakeV])
         
-    #Esta linea le da el color a la comida
+    #Este ciclo pinta los recuadros de la comida, para esto
+    #el vector con los colores de la serpiente se encuentra dentro de la lista de color
+    #para llamar aleatorimente uno de los componentes de la lista
     square(food.x, food.y, 9, FoodC[FoodV])
     
     update()
